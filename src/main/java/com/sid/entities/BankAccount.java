@@ -15,11 +15,11 @@ import javax.persistence.OneToMany;
 import com.sid.enums.AccountStatus;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 //@DiscriminatorColumn(name="TYPE",length = 4, discriminatorType = DiscriminatorType.STRING)
 public abstract class BankAccount {
-//abstract:création seulement des 2 table des classe concrète CurrentAccount et SavingAccount
-	
+//"TABLE_PER_CLASS" abstract:création seulement des 2 table des classe concrète CurrentAccount et SavingAccount
+//"JOINED"	mm avec abstract -> génération des 3 tables 
 	@Id 
 	private String id;
 	private double balance;
