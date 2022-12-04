@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import com.sid.enums.AccountStatus;
 
 @Entity
-@DiscriminatorValue("CA")
+//@DiscriminatorValue("CA")
 public class CurrentAccount extends BankAccount {
 
 	private double overDraft;

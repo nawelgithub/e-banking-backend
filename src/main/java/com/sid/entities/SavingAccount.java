@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import com.sid.enums.AccountStatus;
 
 @Entity
-@DiscriminatorValue("SA")
+//@DiscriminatorValue("SA")
 public class SavingAccount extends BankAccount {
 
 	private double interestRate;
