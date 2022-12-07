@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -15,21 +16,21 @@ import javax.persistence.OneToMany;
 import com.sid.enums.AccountStatus;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-//@DiscriminatorColumn(name="TYPE",length = 4, discriminatorType = DiscriminatorType.STRING)
-public abstract class BankAccount {
-//"TABLE_PER_CLASS" abstract:création seulement des 2 table des classe concrète CurrentAccount et SavingAccount
-//"JOINED"	mm avec abstract -> génération des 3 tables 
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="TYPE",length = 4, discriminatorType = DiscriminatorType.STRING)
+public class BankAccount {
+
 	@Id 
 	private String id;
 	private double balance;
 	private Date createAt;
 	private AccountStatus status;
 	
+	
 	@ManyToOne
 	private Customer customer;
 	
-	@OneToMany(mappedBy = "bankAccount")
+	@OneToMany(mappedBy = "bankAccount", fetch = FetchType.LAZY)
 	private List<AccountOperation> accountOperations;
 	
 	public BankAccount() {
@@ -37,8 +38,10 @@ public abstract class BankAccount {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BankAccount(String id, double balance, Date createAt, AccountStatus status, Customer customer,
-			List<AccountOperation> accountOperations) {
+
+
+	public BankAccount(String id, double balance, Date createAt, AccountStatus status,
+			Customer customer, List<AccountOperation> accountOperations) {
 		super();
 		this.id = id;
 		this.balance = balance;
@@ -47,6 +50,8 @@ public abstract class BankAccount {
 		this.customer = customer;
 		this.accountOperations = accountOperations;
 	}
+
+
 
 	public String getId() {
 		return id;
@@ -95,9 +100,8 @@ public abstract class BankAccount {
 	public void setAccountOperations(List<AccountOperation> accountOperations) {
 		this.accountOperations = accountOperations;
 	}
-	
-	
-	
+
+
 	
 	
 }

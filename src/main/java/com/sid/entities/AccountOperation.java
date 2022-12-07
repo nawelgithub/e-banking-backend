@@ -19,6 +19,7 @@ public class AccountOperation {
 	private Long id;
 	private Date operationDate;
 	private double amount;
+	private String description;
 	
 	@Enumerated(EnumType.STRING)
 	private OperationType type;
@@ -31,14 +32,20 @@ public class AccountOperation {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AccountOperation(Long id, Date operationDate, double amount, OperationType type, BankAccount bankAccount) {
+
+
+	public AccountOperation(Long id, Date operationDate, double amount, String description, OperationType type,
+			BankAccount bankAccount) {
 		super();
 		this.id = id;
 		this.operationDate = operationDate;
 		this.amount = amount;
+		this.description = description;
 		this.type = type;
 		this.bankAccount = bankAccount;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -78,6 +85,14 @@ public class AccountOperation {
 
 	public void setBankAccount(BankAccount bankAccount) {
 		this.bankAccount = bankAccount;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	
