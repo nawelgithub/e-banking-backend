@@ -2,6 +2,7 @@ package com.sid.services;
 
 import java.util.List;
 
+import com.sid.dtos.CustomerDTO;
 import com.sid.entities.BankAccount;
 import com.sid.entities.CurrentAccount;
 import com.sid.entities.Customer;
@@ -12,13 +13,13 @@ import com.sid.exceptions.CustomerNotFoundException;
 
 public interface BankAccountService {
 
-	Customer saveCustomer(Customer customer);
+	CustomerDTO saveCustomer(CustomerDTO customerDTO);
 
 	CurrentAccount saveCurrentBankAccount(double initialBalance, double overDraft ,Long customerId) throws CustomerNotFoundException;
 	
 	SavingAccount saveSavingBankAccount(double initialBalance, double interestRate ,Long customerId) throws CustomerNotFoundException;
 	
-	List<Customer> listCustomer();
+	List<CustomerDTO> listCustomer();
 
 	BankAccount getBankAccount(String accountId) throws BankAccountNotFoundExeption;
 
@@ -29,4 +30,10 @@ public interface BankAccountService {
 	void transfer(String accountIdSource, String accountIdDestiation, double amount) throws BankAccountNotFoundExeption, BalanceNotSufficientException;
 	
 	List<BankAccount> bankAccountList();
+
+	CustomerDTO getCustomer(Long customerId) throws CustomerNotFoundException;
+
+	CustomerDTO updateCustomer(CustomerDTO customerDTO);
+
+	void deleteCustomer(Long customerId);
 }

@@ -11,6 +11,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.sid.dtos.CustomerDTO;
 import com.sid.entities.AccountOperation;
 import com.sid.entities.BankAccount;
 import com.sid.entities.CurrentAccount;
@@ -33,11 +34,11 @@ public class EbankingBackendApplication {
 		SpringApplication.run(EbankingBackendApplication.class, args);
 	}
 
-	@Bean
+	//@Bean
 	CommandLineRunner commandeLineRunner(BankAccountService bankAccountService) {
 		return args -> {
-			Stream.of("Nawel", "Mohamed").forEach(name -> {
-				Customer customer = new Customer();
+			Stream.of("Ali", "Nesrine").forEach(name -> {
+				CustomerDTO customer = new CustomerDTO();
 				customer.setName(name);
 				customer.setEmail(name + "gmail.com");
 				bankAccountService.saveCustomer(customer);
